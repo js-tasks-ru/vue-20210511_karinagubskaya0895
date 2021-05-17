@@ -1,7 +1,7 @@
-// import Vue from './vendor/vue.esm.browser.js';
+import Vue from './vendor/vue.esm.browser.js';
 
 // From https://jsonplaceholder.typicode.com/comments
-/*
+
 const emails = [
   'Eliseo@gardner.biz',
   'Jayne_Kuhic@sydney.com',
@@ -29,6 +29,27 @@ const emails = [
   'Jeffery@juwan.us',
   'Isaias_Kuhic@jarrett.net',
 ];
-*/
 
-// new Vue();
+const app = new Vue({
+  el: '#app',
+  data() {
+    return {
+      list: emails,
+      inputVal: '',
+    };
+  },
+  methods: {
+    checkInput() {
+      let listItem = document.querySelectorAll('li');
+      let inputValue = this.inputVal;
+      listItem.forEach(function (e) {
+        if (e.innerText.includes(inputValue) && inputValue !== '') {  
+          e.classList.add('marked');
+        }
+        else {
+          e.classList.add('marked');
+        }
+      })
+    }
+  }
+});
