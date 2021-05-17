@@ -47,7 +47,7 @@ const app = new Vue({
           e.classList.add('marked');
         }
         else {
-          e.classList.add('marked');
+          e.classList.remove('marked');
         }
       })
     }
