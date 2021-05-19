@@ -9,10 +9,10 @@
 <body>
   <div id="app" v-cloak>
     <main>
-      <template v-for="(meetup, index) in rawMeetups">
-        <input class="radio__input" :id="++index" type="radio" name="title" :value="meetup.title"
-          v-model="radioTitle" />
-        <label :for="index">{{ index }}</label>
+      <template v-for="button in radioButtons">
+        <input class="radio__input" :id="button" type="radio" name="title" :value="button"
+          @click="buttonChangeTitle"/>
+        <label :for="button">{{ button }}</label>
       </template>
       <h2>{{ radioTitle }}</h2>
     </main>
