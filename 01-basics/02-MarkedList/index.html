@@ -11,9 +11,9 @@
 </head>
 <body>
 <div id="app">
-  <input @input="checkInput()" type="text" v-model="inputVal" />
+  <input type="text" v-model="inputVal" />
   <ul>
-    <li v-for="i in list">{{ i }}</li>
+    <li v-for="listElem in list" :class="{marked: listElem.compareText}">{{ listElem.innerText }}</li>
   </ul>
 </div>
 <script type="module" src="script.js"></script>

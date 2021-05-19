@@ -34,22 +34,16 @@ const app = new Vue({
   el: '#app',
   data() {
     return {
-      list: emails,
+      emails,
       inputVal: '',
     };
   },
-  methods: {
-    checkInput() {
-      let listItem = document.querySelectorAll('li');
-      let inputValue = this.inputVal;
-      listItem.forEach(function (e) {
-        if (e.innerText.includes(inputValue) && inputValue !== '') {  
-          e.classList.add('marked');
-        }
-        else {
-          e.classList.remove('marked');
-        }
-      })
+  computed: {
+    list (){
+      return this.emails.map((listElem) => ({
+        innerText: listElem,
+        compareText: this.inputVal != '' && listElem.includes(this.inputVal)
+      }))
     }
   }
 });
