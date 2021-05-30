@@ -14,13 +14,15 @@ const app = new Vue({
     return {
         radioButtons,
         rawMeetups: null,
-        radioTitle: ' ',
+        checked: ' '
     }
   },
-  methods: {
-    buttonChangeTitle (e) {
-     let buttonValue =  e.target.value;
-     return this.radioTitle = this.rawMeetups[buttonValue].title
+  watch: {
+    checked: {
+      deep: true,
+      handler (e) {
+        this.checked = this.rawMeetups[this.checked].title;
+      }
     }
   },
   mounted() {

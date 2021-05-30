@@ -10,11 +10,10 @@
   <div id="app" v-cloak>
     <main>
       <template v-for="button in radioButtons">
-        <input class="radio__input" :id="button" type="radio" name="title" :value="button"
-          @click="buttonChangeTitle"/>
+        <input class="radio__input" :id="button" type="radio" name="title" :value="button" v-model="checked">
         <label :for="button">{{ button }}</label>
       </template>
-      <h2>{{ radioTitle }}</h2>
+      <h2>{{ checked }}</h2>
     </main>
   </div>
   <!-- Решение -->
