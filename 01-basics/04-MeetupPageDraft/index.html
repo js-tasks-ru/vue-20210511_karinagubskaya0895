@@ -11,7 +11,7 @@
 <body>
 <div id="app">
   <div>
-    <div class="meetup-cover">
+  <div class="meetup-cover">
       <h1 class="meetup-cover__title">{{ meetup.title }}</h1>
     </div>
     <div class="container">
@@ -19,7 +19,6 @@
         <div class="meetup__content">
           <h3>Описание</h3>
           <p class="meetup-description">{{ meetup.description }}</p>
-
           <h3>Программа</h3>
           <p class="meetup-agenda__empty" v-if="!meetup.agenda">Программа пока пуста, но когда-нибудь в ней обязательно что-нибудь появится!</p>
           <div class="meetup-agenda" v-for="agenda in meetup.agenda">
@@ -29,8 +28,10 @@
               </div>
               <div class="meetup-agenda__item-col">{{ agenda.startsAt }} - {{ agenda.endsAt }}</div>
               <div class="meetup-agenda__item-col">
-                <h5 class="meetup-agenda__title" v-if="agenda.title">{{ agenda.title }}</h5>
-                <h5 class="meetup-agenda__title" v-else>{{ agendaTitles[agenda.type] }}</h5>
+                <h5 class="meetup-agenda__title">
+                  <template v-if="agenda.title">{{ agenda.title }}</template>  
+                  <template v-else>{{ agendaTitles[agenda.type] }}</template>    
+                </h5>
                 <p><span>{{ agenda.speaker }}</span><span class="meetup-agenda__dot" v-if="agenda.language"></span><span class="meetup-agenda__lang">{{ agenda.language }}</span></p>
                 <p>{{ agenda.description }}</p>
               </div>
