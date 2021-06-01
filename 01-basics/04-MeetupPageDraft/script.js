@@ -46,18 +46,18 @@ const fetchMeetup = () =>
 // Создаём новое Vue приложением через конструктор, передавая опции, описывающие приложение
 const app = new Vue({
   // Шаблон в #app
-  template: `#app`,
   mounted() {
     fetchMeetup().then((meetup) => {
       this.meetup = meetup;
     });
   },
+  template: `#app`,
   data() {
     return {
         meetup: null,
         agenda: null,
         agendaTitles: agendaItemDefaultTitles,
-        agendaIcons: agendaItemIcons,
+        agendaIcons: agendaItemIcons
     }
   },
   computed: {
@@ -67,6 +67,9 @@ const app = new Vue({
         month: 'long',
         day: 'numeric',
       });
+    },
+    meetupImageLink() {
+     return getImageUrlByImageId(this.meetup.imageId);
     }
   },
 });
