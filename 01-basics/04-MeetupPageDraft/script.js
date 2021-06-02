@@ -68,11 +68,9 @@ const app = new Vue({
         day: 'numeric',
       });
     },
-    meetupCoverStyle() {
-      return {
-        coverStyle : this.meetup.imageId && { '--bg-url': `url(${getImageUrlByImageId(this.meetup.imageId)})` },
-      }
-    }
+    coverStyle() {
+      return this.meetup.imageId && { '--bg-url': `url(${getImageUrlByImageId(this.meetup.imageId)})` }
+    },
   },
 });
 app.$mount('#app');
