@@ -15,33 +15,64 @@ function getImageUrlByImageId(imageId) {
   return `${API_URL}/images/${imageId}`;
 }
 
-/**
- * Словарь заголовков по умолчанию для всех типов пунктов программы
- */
-const agendaItemDefaultTitles = {
-  registration: 'Регистрация',
-  opening: 'Открытие',
-  break: 'Перерыв',
-  coffee: 'Coffee Break',
-  closing: 'Закрытие',
-  afterparty: 'Afterparty',
-  talk: 'Доклад',
-  other: 'Другое',
-};
 
-/**
- * Словарь иконок для для всех типов пунктов программы.
- * Соответствует имени иконок в директории /assets/icons
- */
+const agendaItemDefaultTitles = {
+   registration: 'Регистрация',
+   opening: 'Открытие',
+   break: 'Перерыв',
+   coffee: 'Coffee Break',
+   closing: 'Закрытие',
+   afterparty: 'Afterparty',
+   talk: 'Доклад',
+   other: 'Другое',
+ };
+
+
 const agendaItemIcons = {
-  registration: 'key',
-  opening: 'cal-sm',
-  talk: 'tv',
-  break: 'clock',
-  coffee: 'coffee',
-  closing: 'key',
-  afterparty: 'cal-sm',
-  other: 'cal-sm',
+   registration: 'key',
+   opening: 'cal-sm',
+   talk: 'tv',
+   break: 'clock',
+   coffee: 'coffee',
+   closing: 'key',
+   afterparty: 'cal-sm',
+   other: 'cal-sm',
 };
 
 // Требуется создать Vue приложение
+const fetchMeetup = () =>
+  fetch(`${API_URL}/meetups/${MEETUP_ID}`).then((res) => res.json());
+
+// Создаём новое Vue приложением через конструктор, передавая опции, описывающие приложение
+const app = new Vue({
+  // Шаблон в #app
+  mounted() {
+    fetchMeetup().then((meetup) => {
+      this.meetup = meetup;
+    });
+  },
+  template: `#app`,
+  data() {
+    return {
+        meetup: null,
+        agenda: null,
+        agendaTitles: agendaItemDefaultTitles,
+        agendaIcons: agendaItemIcons
+    }
+  },
+  computed: {
+    formatDate() {
+      return new Date(this.meetup.date).toLocaleString(navigator.language, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+    },
+    meetupCoverStyle() {
+      return {
+        coverStyle : this.meetup.imageId && { '--bg-url': `url(${getImageUrlByImageId(this.meetup.imageId)})` },
+      }
+    }
+  },
+});
+app.$mount('#app');

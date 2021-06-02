@@ -5,24 +5,17 @@
   <title>MarkedList</title>
   <style>
     .marked {
-      color: #efc14e;
+      color: #EFC14E;
     }
   </style>
 </head>
 <body>
-
 <div id="app">
-  <input type="text" />
+  <input type="text" v-model="inputVal" />
   <ul>
-    <li>Email</li>
-    <li class="marked">Email</li>
-    <li class="marked">Email</li>
-    <li>Email</li>
-    <li>Email</li>
-    <li>...</li>
+    <li v-for="listElem in list" :class="{marked: listElem.compareText}">{{ listElem.innerText }}</li>
   </ul>
 </div>
-
 <script type="module" src="script.js"></script>
 </body>
 </html>
