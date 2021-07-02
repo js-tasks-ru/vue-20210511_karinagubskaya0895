@@ -5,17 +5,17 @@ import MeetupInfo from './MeetupInfo.js';
 import { getImageUrlByImageId } from './data.js';
 
 const MeetupView = {
-  data() {
-    return {
-      getImageUrlByImageId,
-    };
-  },
   name: 'MeetupView',
   components: {
     MeetupAgenda,
     MeetupCover,
     MeetupDescription,
     MeetupInfo,
+  },
+  computed: {
+    getImageUrlByImageId() {
+      return getImageUrlByImageId;
+    },
   },
   props: {
     meetup: {
