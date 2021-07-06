@@ -4,7 +4,6 @@ const CounterButton = {
     prop: 'count',
     event: 'increment',
   },
-
   props: {
     count: {
       type: Number,
