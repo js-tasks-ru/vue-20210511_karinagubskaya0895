@@ -12,7 +12,7 @@ const CounterButton = {
   },
   methods: {
     increment() {
-      this.$emit('increment', ++this.count);
+      this.$emit('increment', this.count + 1);
     },
   },
   template: `<button type="button" @click="increment">{{ count }}</button>`,
